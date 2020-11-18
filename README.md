@@ -5,7 +5,8 @@ This project provides all necessary utilities to generate `ikpy` C++ files and P
 
 ## Getting Started
 
-Export URDF from Webots:
+Export URDF from Webots:  
+![Export URDF menu](./assets/menu.png)
 ```
 (right click on the robot in scene tree) > Export > (name it `robot.urdf`) > Save
 ```
