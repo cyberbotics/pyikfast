@@ -28,8 +28,6 @@ PyMODINIT_FUNC PyInit_pyikfast(void)
 
 static PyObject *inverse(PyObject *self, PyObject *args)
 {
-  // Reference: https://docs.python.org/3/c-api/arg.html#c.PyArg_ParseTuple
-
   PyObject *argTranslation;
   PyObject *argRotation;
   double rotation[9];

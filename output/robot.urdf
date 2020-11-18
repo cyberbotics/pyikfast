@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<robot name="/home/lukic/Documents/test.urdf" xmlns:xacro="http://ros.org/wiki/xacro">
+  <link name="base_link">
+    <visual>
+      <origin xyz="-0.063119 0 0.106497" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.676133 0.514411 0.213001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.063119 0 0.106497" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.676133 0.514411 0.213001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="A motor" type="revolute">
+    <parent link="base_link"/>
+    <child link="solid_12158"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10000" lower="-3.1415" upper="3.1415" velocity="10"/>
+    <origin xyz="0 0 0.159498" rpy="0 0 0"/>
+  </joint>
+  <link name="solid_12158">
+    <visual>
+      <origin xyz="0.046699 0.049037 0.270246" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.621392 0.540918 0.552493"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.046699 0.049037 0.270246" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.621392 0.540918 0.552493"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="B motor" type="revolute">
+    <parent link="solid_12158"/>
+    <child link="solid_12168"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="10000" lower="-1.5708" upper="2.61799" velocity="10"/>
+    <origin xyz="0.178445 -0.122498 0.334888" rpy="0 0 0"/>
+  </joint>
+  <link name="solid_12168">
+    <visual>
+      <origin xyz="-0.003447 -0.061473 0.529095" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.279997 0.256948 1.33599"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.003447 -0.061473 0.529095" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.279997 0.256948 1.33599"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="C motor" type="revolute">
+    <parent link="solid_12168"/>
+    <child link="solid_12178"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="10000" lower="-3.1415" upper="1.309" velocity="10"/>
+    <origin xyz="-0.003447 -0.0267 1.095594" rpy="0 0 0"/>
+  </joint>
+  <link name="solid_12178">
+    <visual>
+      <origin xyz="0.085806 0.199325 0.094072" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.533578 0.398651 0.472912"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.085806 0.199325 0.094072" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.533578 0.398651 0.472912"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="D motor" type="revolute">
+    <parent link="solid_12178"/>
+    <child link="solid_12188"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="10000" lower="-6.98132" upper="6.98132" velocity="10"/>
+    <origin xyz="0.340095 0.149198 0.174998" rpy="0 0 0"/>
+  </joint>
+  <link name="solid_12188">
+    <visual>
+      <origin xyz="0.511874 0.003021 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="1.04097 0.228038 0.195956"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.511874 0.003021 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="1.04097 0.228038 0.195956"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="E motor" type="revolute">
+    <parent link="solid_12188"/>
+    <child link="solid_12198"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="10000" lower="-2.18166" upper="2.0944" velocity="10"/>
+    <origin xyz="0.929888 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="solid_12198">
+    <visual>
+      <origin xyz="0 -0.0015 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.159731 0.130998 0.160194"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.0015 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.159731 0.130998 0.160194"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="F motor" type="revolute">
+    <parent link="solid_12198"/>
+    <child link="solid_12208"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="10000" lower="-6.98132" upper="6.98132" velocity="10"/>
+    <origin xyz="0.125 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="solid_12208">
+    <visual>
+      <origin xyz="-0.025004 0.002215 -0.000958" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.069993 0.125817 0.125113"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.025004 0.002215 -0.000958" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.069993 0.125817 0.125113"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>

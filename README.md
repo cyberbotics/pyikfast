@@ -1,33 +1,42 @@
-Work in progress!
+# Python Bindings for ikfast
+
+Generate a Python `ikfast` library from the given URDF file.
+This project provides all necessary utilities to generate `ikpy` C++ files and Python bindings for it.
+
+## Getting Started
 
 Export URDF from Webots:
 ```
-(right click on the robot in scene tree) > Export > (name it robot.urdf) > Save
+(right click on the robot in scene tree) > Export > (name it `robot.urdf`) > Save
 ```
 
-Prepare *.dae and *.xml for ikfast:
+Move to the directory with `robot.urdf` and execute:
 ```bash
-[ -z "${NAME}" ] && "NAME is missing!"
-[ -z "${EFFECTOR}" ] && "EFFECTOR is missing!"
-[ -z "${BASE}" ] && "BASE is missing!"
-
-sudo apt install -y ros-noetic-collada-urdf
-source /opt/ros/noetic/local_setup.bash
-rosrun collada_urdf urdf_to_collada ${NAME}.urdf ${NAME}.dae
-
-cat <<EOT >> ${NAME}.xml
-<robot file="${NAME}.dae">
-        <Manipulator name="${NAME}_workspace">
-          <base>${BASE}</base>
-          <effector>${EFFECTOR}</effector>
-        </Manipulator>
-</robot>
-EOT
-
-docker run -v $PWD:/root -it hamzamerzic/openrave bash -c "openrave.py --database inversekinematics --robot=${NAME}.xml --iktype=transform6d --iktests=100"
+docker run -v ${PWD}:/output pyikfast [base_link] [effector]
 ```
 
-Move `setup.py` and `ikfast.cpp` to the output directory and execute:
+Your Python library is ready!
+Install it as:
 ```bash
 pip3 install .
+```
+
+Use the library
+```python
+import pyikfast
+
+
+target_translation = [0.5, 0.5, 0.5]
+target_rotation = [1, 0, 0, 0, 1, 0, 0, 0, 1]
+positions = pyikfast.inverse(target_translation, target_rotation)
+print(positions)
+```
+
+## Development
+If you are interested into the library development here are a few notes:
+
+```bash
+docker build . --tag pyikfast
+docker run -it -v ${PWD}/output:/output --entrypoint bash pyikfast
+/entrypoint.bash base_link solid_12208 _ext
 ```
