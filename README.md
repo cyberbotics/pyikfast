@@ -1,4 +1,4 @@
-# Python Bindings for ikfast
+# Python Bindings for `ikfast`
 
 Generate a Python `ikfast` library from the given URDF file.
 This project provides all necessary utilities to generate `ikpy` C++ files and Python bindings for it.
