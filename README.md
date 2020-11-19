@@ -61,7 +61,7 @@ docker run -it -v ${PWD}/output:/output --entrypoint bash pyikfast
 
 # Compile standalone
 g++ $(find -name '*.cpp') -o ikfast
-ikfast 1 0 0 0.5 0 1 0 0.5 0 0 1 0.5
+./ikfast 1 0 0 0.5 0 1 0 0.5 0 0 1 0.5
 
 # Python
 python3 -c "import pyikfast; print(pyikfast.inverse([0.5, 0.5, 0.5], [1, 0, 0, 0, 1, 0, 0, 0, 1]))"
