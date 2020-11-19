@@ -49,7 +49,7 @@ static PyObject *inverse(PyObject *self, PyObject *args)
 
   // Compute inverse kinematics
   IkSolutionList<IkReal> solutions;
-  ComputeIk(rotation, rotation, NULL, solutions);
+  ComputeIk(translation, rotation, NULL, solutions);
 
   // Return the solution
   PyObject *pySolutionCollection = PyList_New((int)solutions.GetNumSolutions());
