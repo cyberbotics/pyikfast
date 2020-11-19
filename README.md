@@ -39,6 +39,17 @@ translation, rotatation = pyikfast.forward(positions[2])
 print(translation, rotation)
 ```
 
+## Distribution
+To distribute the generated Python library you can make [a Python `*.whl` file](https://packaging.python.org/tutorials/packaging-projects/#generating-distribution-archives):
+```bash
+pip3 install setuptools wheel
+python3 setup.py bdist_wheel
+```
+and your `*.whl` will be located in `./dist/pyikfast-*.whl`, so a user can install it as:
+```bash
+pip3 install pyikfast-*.whl
+```
+
 ## Development
 If you are interested into the library development here are a few notes:
 
