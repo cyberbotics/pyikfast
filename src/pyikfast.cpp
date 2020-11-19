@@ -7,10 +7,13 @@
 using namespace ikfast;
 
 static PyObject *inverse(PyObject *self, PyObject *args);
+static PyObject *forward(PyObject *self, PyObject *args);
 bool ComputeIk(const IkReal *eetrans, const IkReal *eerot, const IkReal *pfree, IkSolutionListBase<IkReal> &solutions);
+void ComputeFk(const IkReal *j, IkReal *eetrans, IkReal *eerot);
 
 static PyMethodDef PyIkFastMethods[] = {
     {"inverse", inverse, METH_VARARGS, "Calculate inverse kinematics"},
+    {"forward", forward, METH_VARARGS, "Calculate forwards kinematics"},
     {NULL, NULL, 0, NULL}};
 
 static struct PyModuleDef pyikfastmodule = {
@@ -26,12 +29,12 @@ PyMODINIT_FUNC PyInit_pyikfast(void)
   return module;
 }
 
-static PyObject *inverse(PyObject *self, PyObject *args)
+PyObject *inverse(PyObject *self, PyObject *args)
 {
   PyObject *argTranslation;
   PyObject *argRotation;
-  double rotation[9];
-  double translation[3];
+  IkReal rotation[9];
+  IkReal translation[3];
 
   // Parse arguments
   if (!PyArg_ParseTuple(args, "OO", &argTranslation, &argRotation))
@@ -69,4 +72,41 @@ static PyObject *inverse(PyObject *self, PyObject *args)
   }
 
   return pySolutionCollection;
+}
+
+PyObject *forward(PyObject *self, PyObject *args)
+{
+  PyObject *argPositions;
+  IkReal positions[20];
+  IkReal rotation[9];
+  IkReal translation[3];
+
+  // Parse arguments
+  if (!PyArg_ParseTuple(args, "O", &argPositions))
+  {
+    return NULL;
+  }
+  for (int i = 0; i < PyList_Size(argPositions); i++)
+  {
+    positions[i] = PyFloat_AsDouble(PyList_GetItem(argPositions, i));
+  }
+
+  // Compute forward kinematics
+  ComputeFk(positions, translation, rotation);
+
+  // Return the solution
+  PyObject *pyResult = PyList_New(2);
+  PyObject *pyTranslation = PyList_New(3);
+  PyObject *pyRotation = PyList_New(9);
+  PyList_SetItem(pyResult, 0, pyTranslation);
+  PyList_SetItem(pyResult, 1, pyRotation);
+  for (int i = 0; i < 3; i++)
+  {
+    PyList_SetItem(pyTranslation, i, PyFloat_FromDouble(translation[i]));
+  }
+  for (int i = 0; i < 9; i++)
+  {
+    PyList_SetItem(pyRotation, i, PyFloat_FromDouble(rotation[i]));
+  }
+  return pyResult;
 }

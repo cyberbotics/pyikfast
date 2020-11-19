@@ -37,7 +37,16 @@ print(positions)
 If you are interested into the library development here are a few notes:
 
 ```bash
+# Building using Docker
 docker build . --tag pyikfast
 docker run -it -v ${PWD}/output:/output --entrypoint bash pyikfast
 /entrypoint.bash base_link solid_12208 _ext
+
+# Compile standalone
+g++ $(find -name '*.cpp') -o ikfast
+ikfast 1 0 0 0.5 0 1 0 0.5 0 0 1 0.5
+
+# Python
+python3 -c "import pyikfast; print(pyikfast.inverse([0.5, 0.5, 0.5], [1, 0, 0, 0, 1, 0, 0, 0, 1]))"
+python3 -c "import pyikfast; print(pyikfast.forward([0.927295218001612, -2.899331265288886, 2.048719302774242, -1.057447868999410, 1.163951188044116, 0.612010251709654]))"
 ```
