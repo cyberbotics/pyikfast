@@ -13,16 +13,16 @@ Export URDF from Webots:
 
 Move to the directory with `robot.urdf` and execute:
 ```bash
-docker run -v ${PWD}:/output pyikfast [base_link] [effector]
+docker run -v ${PWD}:/output cyberbotics/pyikfast [base_link] [effector]
 ```
 
-Your Python library is ready!
+After a few minutes your Python library should be ready ready!
 Install it as:
 ```bash
 pip3 install .
 ```
 
-Use the library
+Use the library:
 ```python
 import pyikfast
 
