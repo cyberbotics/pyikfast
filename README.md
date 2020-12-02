@@ -35,7 +35,7 @@ positions = pyikfast.inverse(target_translation, target_rotation)
 print(positions)
 
 # Calculate forward kinematics (we use the third IK solution)
-translation, rotatation = pyikfast.forward(positions[2])
+translation, rotation = pyikfast.forward(positions[2])
 print(translation, rotation)
 ```
 
