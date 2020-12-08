@@ -16,16 +16,16 @@ static PyMethodDef PyIkFastMethods[] = {
     {"forward", forward, METH_VARARGS, "Calculate forwards kinematics"},
     {NULL, NULL, 0, NULL}};
 
-static struct PyModuleDef pyikfastmodule = {
+static struct PyModuleDef pyikfast[put_extension]module = {
     PyModuleDef_HEAD_INIT,
-    "pyikfast",
+    "pyikfast[put_extension]",
     "ikfast wrapper",
     -1,
     PyIkFastMethods};
 
-PyMODINIT_FUNC PyInit_pyikfast(void)
+PyMODINIT_FUNC PyInit_pyikfast[put_extension](void)
 {
-  PyObject *module = PyModule_Create(&pyikfastmodule);
+  PyObject *module = PyModule_Create(&pyikfast[put_extension]module);
   return module;
 }
 

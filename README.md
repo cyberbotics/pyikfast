@@ -13,8 +13,13 @@ Export URDF from Webots:
 
 Move to the directory with `robot.urdf` and execute:
 ```bash
-docker run -v ${PWD}:/output cyberbotics/pyikfast [base_link] [effector]
+docker run -v ${PWD}:/output cyberbotics/pyikfast [base_link] [effector] [module_extension]
 ```
+Replace `[base_link]` and `[effector]` with the link-names from the `robot.urdf`.
+The `[module_extension]` will append to the generated Python module name.
+The module name will be `pyikfast` + `[module_extension]`.
+For example, `_irb4600` will generate the Python module named `pyikfast_irb4600`.
+
 
 After a few minutes your Python library should be ready ready!
 Install it as:
