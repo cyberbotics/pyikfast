@@ -16,6 +16,9 @@ cat <<EOT >> robot.xml
   </Manipulator>
 </robot>
 EOT
+ls -a
+# Round all numbers to 5 decimal places. Can fix recursion depth errors and speed up the process.
+python /round_collada_numbers.py robot.dae robot.dae 5
 openrave.py --database inversekinematics --robot=robot.xml --iktype=transform6d --iktests=100
 
 # Grap Python bind and `ikfast` generated files

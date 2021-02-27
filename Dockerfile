@@ -8,6 +8,8 @@ RUN apt-get -y update && \
   apt-get -y update && \
   apt install -y ros-kinetic-collada-urdf ros-kinetic-rosbash
 
+RUN pip install lxml
 COPY entrypoint.bash /entrypoint.bash
+COPY round_collada_numbers.py /round_collada_numbers.py
 COPY src /src
 ENTRYPOINT ["/entrypoint.bash"]
